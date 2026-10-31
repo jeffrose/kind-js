@@ -1,26 +1,69 @@
 {
-  "name": "kind.js",
-  "description": "A simple checking utility",
-  "version": "0.4.0",
-  "repository": "https://github.com/jeffrose/kind.js.git",
-  "homepage": "https://github.com/jeffrose/kind.js",
-  "bugs": "https://github.com/jeffrose/kind.js/issues",
-  "author": "Jeff Rose",
-  "license": "Apache-2.0",
+  "name": "kind-js",
+  "version": "0.5.0",
+  "description": "A simple, dependency-free type-checking utility for JavaScript",
   "keywords": [
-    "kind", "kindjs", "kindof", "type", "typeof"
+    "kind",
+    "kindjs",
+    "kindof",
+    "typeof",
+    "type",
+    "type-check",
+    "check",
+    "utility",
+    "umd",
+    "esm",
+    "typescript"
   ],
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Jeff Rose",
+    "email": "jefuri.rozu@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffrose/kind-js.git"
+  },
+  "homepage": "https://github.com/jeffrose/kind-js",
+  "bugs": {
+    "url": "https://github.com/jeffrose/kind-js/issues"
+  },
   "main": "kind.js",
-  "dependencies": {},
-  "devDependencies": {
-    "chai": "2.0.0",
-    "gulp": "3.8.11",
-    "gulp-istanbul": "0.6.0",
-    "gulp-mocha": "2.0.0",
-    "gulp-util": "3.0.3",
-    "mocha": "2.1.0"
+  "module": "kind.mjs",
+  "types": "kind.d.ts",
+  "unpkg": "kind.js",
+  "jsdelivr": "kind.js",
+  "exports": {
+    ".": {
+      "types": "./kind.d.ts",
+      "import": "./kind.mjs",
+      "require": "./kind.js",
+      "default": "./kind.js"
+    },
+    "./kind.js": "./kind.js",
+    "./kind.mjs": "./kind.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "kind.js",
+    "kind.mjs",
+    "kind.d.ts",
+    "docs",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "test": "node --test test/behavior.test.js test/api.test.js test/regressions.test.js",
+    "test:coverage": "node --test --experimental-test-coverage test/behavior.test.js test/api.test.js test/regressions.test.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "prepublishOnly": "npm test && npm run typecheck"
   },
   "engines": {
-    "node": ">= 0.9"
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
   }
 }
